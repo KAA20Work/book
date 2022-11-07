@@ -25,4 +25,9 @@ class BooksController {
         redirect action: 'list'
     }
 
+    def getBook(int id) {
+        def currentBook = booksList.get(id)
+        render view: 'single-book', model: [book: currentBook]
+    }
+
 }
