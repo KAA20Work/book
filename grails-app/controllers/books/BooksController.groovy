@@ -20,4 +20,10 @@ class BooksController {
         book.delete(flush: true)
         redirect action: 'list'
     }
+    def update() {
+        def book = Book.get(1)
+        book.setTitle("War and War")
+        book.save(flush: true)
+        redirect action: 'list'
+    }
 }
