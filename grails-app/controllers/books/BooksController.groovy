@@ -2,9 +2,10 @@ package books
 
 
 class BooksController {
-    def addBook() {
-        def newBook = new Book(1, "Lev Tolstoy", "War and Piece")
-        newBook.save()
-        render "Book was saved correctly!"
+    def index() {
+        def book = new Book(id: 1, title: "War and Piece", author: new Author(id: 1, name: "Lev Tolstoy"))
+        book.save()
+
+        render "Saved successfully!"
     }
 }
