@@ -1,6 +1,7 @@
 package books
 
 import grails.converters.JSON
+import grails.gorm.DetachedCriteria
 
 
 class BooksController {
@@ -29,5 +30,10 @@ class BooksController {
     def find() {
         def book = Book.findByTitle("Crime and Punishment")
         render book.title
+    }
+    def findByTwoConditions() {
+        def query = Book.where{ title == "War and Piece" }
+        def query2 = query.where {id == 1}
+        render query2.find().author.name
     }
 }
