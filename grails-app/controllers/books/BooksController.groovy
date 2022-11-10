@@ -26,4 +26,8 @@ class BooksController {
         book.save(flush: true)
         redirect action: 'list'
     }
+    def find() {
+        def book = Book.findByTitle("Crime and Punishment")
+        render book.title
+    }
 }
