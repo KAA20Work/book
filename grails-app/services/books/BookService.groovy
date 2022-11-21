@@ -2,10 +2,10 @@ package books
 
 import grails.transaction.Transactional
 
-@Transactional
+
 class BookService {
     static scope = "prototype"
-    @Transactional(readOnly = true)
+
     def listBooks() {
         Book.list()
     }

@@ -1,12 +1,10 @@
 package books
 
 import grails.converters.JSON
-import grails.gorm.DetachedCriteria
-import org.springframework.beans.factory.annotation.Autowired
 
 
 class BooksController {
-    @Autowired
+
     BookService service
     def add() {
         service.add()

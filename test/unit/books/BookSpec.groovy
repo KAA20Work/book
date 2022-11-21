@@ -16,5 +16,6 @@ class BookSpec extends Specification {
     }
 
     void "test something"() {
+
     }
 }
