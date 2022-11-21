@@ -2,38 +2,33 @@ package books
 
 import grails.converters.JSON
 import grails.gorm.DetachedCriteria
+import org.springframework.beans.factory.annotation.Autowired
 
 
 class BooksController {
+    @Autowired
+    BookService service
     def add() {
-        def book = new Book(id: 1, title: "War and Piece", author: new Author(id: 1, name: "Lev Tolstoy"))
-        book.save()
-        def book2 = new Book(id: 2, title: "Crime and Punishment", author: new Author(id: 2, name: "Dostoevsky"))
-        book2.save()
+        service.add()
         redirect action: 'list'
     }
     def list() {
-        def books = Book.list(sort:"title", order:"desc")
-        render books as JSON
+        render service.listBooks() as JSON
     }
     def delete() {
-        def book = Book.get(1)
-        book.delete(flush: true)
+        service.delete()
         redirect action: 'list'
     }
     def update() {
-        def book = Book.get(1)
-        book.setTitle("War and War")
-        book.save(flush: true)
+        service.update()
         redirect action: 'list'
     }
     def find() {
-        def book = Book.findByTitle("Crime and Punishment")
+        def book = service.find()
         render book.title
     }
     def findByTwoConditions() {
-        def query = Book.where{ title == "War and Piece" }
-        def query2 = query.where {id == 1}
-        render query2.find().author.name
+        def book = service.findByTwoConditions()
+        render book.find().author.name
     }
 }
